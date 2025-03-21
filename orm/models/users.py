@@ -17,3 +17,4 @@ class User(Base, RecordTimestamps):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(DEFAULT_LENGTH), nullable=True)
     is_onboarding = Column(Boolean, default=False)
+    solana_address = Column(String(DEFAULT_LENGTH), unique=True, nullable=False)
