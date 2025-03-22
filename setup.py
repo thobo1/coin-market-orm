@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "sqlalchemy>=1.4.0",
-        # Ajoutez ici vos autres dépendances
+        "psycopg2-binary",
     ],
     python_requires=">=3.7",
     author="Anthony Thiery",
