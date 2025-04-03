@@ -18,3 +18,4 @@ class User(Base, RecordTimestamps):
     username = Column(String(DEFAULT_LENGTH), nullable=True)
     is_onboarding = Column(Boolean, default=False)
     solana_address = Column(String(DEFAULT_LENGTH), unique=True, nullable=False)
+    addresses = relationship("Address", back_populates="user")
