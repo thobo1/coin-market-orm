@@ -9,6 +9,7 @@ class Address(Base, RecordTimestamps):
     __tablename__ = "addresses"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+    recipient = Column(String(255), nullable=False)
     address = Column(String(255), nullable=False)
     city = Column(String(100), nullable=False)
     postal_code = Column(String(20), nullable=False)
