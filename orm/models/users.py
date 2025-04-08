@@ -1,9 +1,4 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    Boolean,
-    String,
-)
+from sqlalchemy import Column, Integer, Boolean, String, Float
 from orm.database import Base
 from orm.mixins import RecordTimestamps
 from orm.types import DEFAULT_LENGTH
@@ -19,3 +14,10 @@ class User(Base, RecordTimestamps):
     is_onboarding = Column(Boolean, default=False)
     solana_address = Column(String(DEFAULT_LENGTH), unique=True, nullable=False)
     addresses = relationship("Address", back_populates="user")
+    notes = relationship("Note", back_populates="user")
+
+    @property
+    def average_note(self):
+        if self.notes:
+            return sum(note.value for note in self.notes) / len(self.notes)
+        return None
