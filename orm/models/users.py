@@ -1,8 +1,7 @@
-from sqlalchemy import Column, Integer, Boolean, String, Float
+from sqlalchemy import Column, Integer, Boolean, String
 from orm.database import Base
 from orm.mixins import RecordTimestamps
 from orm.types import DEFAULT_LENGTH
-from sqlalchemy.orm import Session
 from sqlalchemy.orm import relationship
 
 
