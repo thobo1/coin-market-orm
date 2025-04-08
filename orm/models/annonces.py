@@ -18,4 +18,4 @@ class Annonce(Base, RecordTimestamps):
     photos = Column(Text, nullable=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     address_id = Column(Integer, ForeignKey("addresses.id"), nullable=True)
-    notes = relationship("Note", back_populates="annonce")
+    # notes = relationship("Note", back_populates="annonce")
