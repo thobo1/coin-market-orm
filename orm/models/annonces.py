@@ -20,4 +20,4 @@ class Annonce(Base, RecordTimestamps):
     address_id = Column(Integer, ForeignKey("addresses.id"), nullable=True)
     status = Column(String(50), default="Not listed", nullable=False)
     buyer_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-    # note = relationship("Note", back_populates="annonce", uselist=False)
+    pubkey = Column(String(44), unique=True, nullable=True)
