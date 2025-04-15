@@ -26,3 +26,18 @@ class Address(Base, RecordTimestamps):
             postgresql_where=(is_default == True),
         ),
     )
+
+    def to_json(self):
+        """
+        Convert the Address object to a JSON-compatible dictionary.
+
+        Returns:
+            dict: A dictionary representation of the Address object.
+        """
+        return {
+            "recipient": self.recipient,
+            "address": self.address,
+            "city": self.city,
+            "postal_code": self.postal_code,
+            "country": self.country,
+        }
