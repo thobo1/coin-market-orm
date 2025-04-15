@@ -1,10 +1,10 @@
-from logging.config import fileConfig
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-from alembic import context
 import os
-from dotenv import load_dotenv
+from logging.config import fileConfig
 
+from dotenv import load_dotenv
+from sqlalchemy import engine_from_config, pool
+
+from alembic import context
 from orm.database import Base
 from orm.models.users import User  # importez tous vos modèles
 

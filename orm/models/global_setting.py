@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, CheckConstraint
+from sqlalchemy import CheckConstraint, Column, Integer
+
 from orm.database import Base
 from orm.mixins import RecordTimestamps
 

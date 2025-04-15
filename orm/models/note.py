@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, ForeignKey, CheckConstraint
+from sqlalchemy import CheckConstraint, Column, ForeignKey, Integer
+from sqlalchemy.orm import relationship
+
 from orm.database import Base
 from orm.mixins import RecordTimestamps
-from sqlalchemy.orm import relationship
 
 
 class Note(Base, RecordTimestamps):

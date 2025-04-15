@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="coin-market-orm",  # Le nom que vous utiliserez pour pip install

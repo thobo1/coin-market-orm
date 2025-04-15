@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, Boolean, String
+from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy.orm import relationship
+
 from orm.database import Base
 from orm.mixins import RecordTimestamps
 from orm.types import DEFAULT_LENGTH
-from sqlalchemy.orm import relationship
 
 
 class User(Base, RecordTimestamps):

@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Index
+from sqlalchemy import Boolean, Column, ForeignKey, Index, Integer, String
+from sqlalchemy.orm import relationship
+
 from orm.database import Base
 from orm.mixins import RecordTimestamps
-from sqlalchemy.orm import relationship
 from orm.models.users import User
 
 
