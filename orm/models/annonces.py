@@ -21,3 +21,5 @@ class Annonce(Base, RecordTimestamps):
     status = Column(String(50), default="Not listed", nullable=False)
     buyer_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     pubkey = Column(String(44), unique=True, nullable=True)
+    shipment_confirmation = Column(JSON, nullable=True)
+    dispute = Column(JSON, nullable=True)
