@@ -3,3 +3,4 @@ from .annonces import Annonce
 from .global_setting import GlobalSetting
 from .note import Note
 from .users import User
+from .price_request import PriceRequest
