@@ -6,7 +6,9 @@ from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from orm.database import Base
-from orm.models.users import User  # importez tous vos modèles
+from orm.models.users import User
+from orm.models.annonces import Annonce
+from orm.models.price_request import PriceRequest
 
 # Chargement des variables d'environnement
 load_dotenv()
