@@ -8,9 +8,11 @@ from orm.mixins import RecordTimestamps
 class PriceRequest(Base, RecordTimestamps):
     __tablename__ = "price_requests"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    annonce_id = Column(Integer, ForeignKey("annonces.id"), nullable=False)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    message = Column(Text, nullable=False)
-    offered_price = Column(Float, nullable=True)
-    status = Column(String(50), default="Pending", nullable=False)
+    id = Column(Integer, primary_key=True, index=True)
+    annonce_id = Column(Integer, ForeignKey("annonces.id"))
+    buyer_id = Column(Integer, ForeignKey("users.id")) 
+    seller_id = Column(Integer, ForeignKey("users.id")) 
+    last_offer_by = Column(String)
+    offer_price = Column(Float)
+    message = Column(String)
+    status = Column(String)  
