@@ -1,4 +1,4 @@
-from sqlalchemy import CheckConstraint, Column, ForeignKey, Integer
+from sqlalchemy import CheckConstraint, Column, ForeignKey, Integer, Text
 from sqlalchemy.orm import relationship
 
 from orm.database import Base
@@ -9,11 +9,14 @@ class Note(Base, RecordTimestamps):
     __tablename__ = "notes"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    value = Column(Integer, nullable=False)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    annonce_id = Column(Integer, ForeignKey("annonces.id"), nullable=False)
-    user = relationship("User", back_populates="notes")
-    # annonce = relationship("Annonce", back_populates="note", uselist=False)
+    rating = Column(Integer, nullable=False)
+    comment = Column(Text, nullable=True)
+    annonce_id = Column(Integer, ForeignKey("annonces.id"), nullable=False, unique=True)
+    seller_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    reviewer_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    seller = relationship("User", back_populates="reviews_received", foreign_keys=[seller_id])
+    reviewer = relationship("User", back_populates="reviews_given", foreign_keys=[reviewer_id])
+
     __table_args__ = (
-        CheckConstraint("value >= 1 AND value <= 5", name="note_value_range_check"),
+        CheckConstraint("rating >= 1 AND rating <= 5", name="rating_check"),
     )

@@ -23,3 +23,4 @@ class Annonce(Base, RecordTimestamps):
     pubkey = Column(String(44), unique=True, nullable=True)
     shipment_confirmation = Column(JSON, nullable=True)
     dispute = Column(JSON, nullable=True)
+    shipping_regions = Column(JSON, nullable=True)

@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -18,11 +18,16 @@ class User(Base, RecordTimestamps):
     email_verified = Column(Boolean, default=False)
     email_otp = Column(String(6), nullable=True)
     email_otp_created_at = Column(DateTime, nullable=True)
+    is_banned = Column(Boolean, default=False, nullable=False)
+    ban_expires_at = Column(DateTime, nullable=True)
+    ban_reason = Column(Text, nullable=True)
     addresses = relationship("Address", back_populates="user")
-    notes = relationship("Note", back_populates="user")
+    
+    reviews_received = relationship("Note", back_populates="seller", foreign_keys="[Note.seller_id]")
+    reviews_given = relationship("Note", back_populates="reviewer", foreign_keys="[Note.reviewer_id]")
 
     @property
     def average_note(self):
-        if self.notes:
-            return sum(note.value for note in self.notes) / len(self.notes)
+        if self.reviews_received:
+            return sum(note.rating for note in self.reviews_received) / len(self.reviews_received)
         return None
