@@ -18,7 +18,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+.build/
 develop-eggs/
 dist/
 downloads/
@@ -31,7 +31,7 @@ sdist/
 var/
 wheels/
 *.egg-info/
-coin_market_orm.egg-info/
+.coin_market_orm.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
