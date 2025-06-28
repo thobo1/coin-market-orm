@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: coin-market-orm
+Version: 0.1.0
+Summary: Une description courte de votre package
+Author: Anthony Thiery
+Author-email: votre@email.com
+Requires-Python: >=3.7
+Requires-Dist: sqlalchemy>=1.4.0
+Requires-Dist: psycopg2-binary
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

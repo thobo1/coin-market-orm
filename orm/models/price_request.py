@@ -14,5 +14,5 @@ class PriceRequest(Base, RecordTimestamps):
     seller_id = Column(Integer, ForeignKey("users.id")) 
     last_offer_by = Column(String)
     offer_price = Column(Float)
-    message = Column(String)
+    signature = Column(String, nullable=True)
     status = Column(String)  
