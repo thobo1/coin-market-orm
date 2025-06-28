@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="coin-market-orm",  # Le nom que vous utiliserez pour pip install
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(),
     install_requires=[
         "sqlalchemy>=1.4.0",
