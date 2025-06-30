@@ -12,16 +12,16 @@ class User(Base, RecordTimestamps):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    # username = Column(String(DEFAULT_LENGTH), nullable=True)
-    # email = Column(String(DEFAULT_LENGTH), nullable=True)
-    # is_onboarding = Column(Boolean, default=false)
+    username = Column(String(DEFAULT_LENGTH), nullable=True)
+    email = Column(String(DEFAULT_LENGTH), nullable=True)
+    is_onboarding = Column(Boolean, default=false)
     solana_address = Column(String(DEFAULT_LENGTH), unique=True, nullable=False)
     is_banned = Column(Boolean, default=false, nullable=False)
     ban_expires_at = Column(DateTime, nullable=True)
     ban_reason = Column(Text, nullable=True)
-    # email_verified = Column(Boolean, default=false)
-    # email_otp = Column(String(6), nullable=True)
-    # email_otp_created_at = Column(DateTime, nullable=True)
+    email_verified = Column(Boolean, default=false)
+    email_otp = Column(String(6), nullable=True)
+    email_otp_created_at = Column(DateTime, nullable=True)
 
     addresses = relationship("Address", back_populates="user")
     
