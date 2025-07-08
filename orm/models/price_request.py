@@ -15,4 +15,5 @@ class PriceRequest(Base, RecordTimestamps):
     last_offer_by = Column(String)
     offer_price = Column(Float)
     signature = Column(String, nullable=True)
-    status = Column(String)  
+    status = Column(String)
+    timestamp = Column(DateTime, default=func.now())  
