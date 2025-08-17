@@ -1,5 +1,6 @@
 from math import factorial
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, Text, false
+
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text, false
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 

@@ -6,9 +6,11 @@ from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from orm.database import Base
-from orm.models.users import User
-from orm.models.annonces import Annonce
-from orm.models.price_request import PriceRequest
+# Import all models to ensure they are registered with SQLAlchemy
+from orm.models import (
+    Address, Annonce, Conversation, GlobalSetting, Message, 
+    Note, Notification, PriceRequest, UserConversationStatus, User
+)
 
 # Chargement des variables d'environnement
 load_dotenv()
