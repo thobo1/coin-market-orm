@@ -25,11 +25,11 @@ class Message(Base, RecordTimestamps):
     deleted_at = Column(DateTime, nullable=True)
     deleted_by = Column(Integer, ForeignKey("users.id"), nullable=True)
     
-    # Relations
-    conversation = relationship("Conversation", foreign_keys=[conversation_id], back_populates="messages")
-    sender = relationship("User", foreign_keys=[sender_id], backref="sent_messages")
-    reply_to = relationship("Message", remote_side=[id], backref="replies")
-    deleted_by_user = relationship("User", foreign_keys=[deleted_by])
+    # # Relations
+    # conversation = relationship("Conversation", foreign_keys=[conversation_id], back_populates="messages")
+    # sender = relationship("User", foreign_keys=[sender_id], backref="sent_messages")
+    # reply_to = relationship("Message", remote_side=[id], backref="replies")
+    # deleted_by_user = relationship("User", foreign_keys=[deleted_by])
     
     # Index pour les performances
     __table_args__ = (

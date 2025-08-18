@@ -20,10 +20,10 @@ class UserConversationStatus(Base, RecordTimestamps):
     notification_preferences = Column(JSON, nullable=True)  # {"email": true, "push": true}
     custom_name = Column(String(255), nullable=True)  # Nom personnalisé pour la conversation
     
-    # Relations
-    user = relationship("User", backref="conversation_statuses")
-    conversation = relationship("Conversation")
-    last_read_message = relationship("Message")
+    # # Relations
+    # user = relationship("User", backref="conversation_statuses")
+    # conversation = relationship("Conversation")
+    # last_read_message = relationship("Message")
     
     # Index pour les performances
     __table_args__ = (
