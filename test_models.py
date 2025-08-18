@@ -6,7 +6,7 @@ Usage: python test_models.py
 
 import sys
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
 
 # Ajouter le répertoire courant au path pour importer les modules
@@ -56,7 +56,6 @@ def test_database_creation():
         print("✅ Tables créées avec succès")
         
         # Vérifier que toutes les tables existent
-        from sqlalchemy import inspect
         inspector = inspect(engine)
         tables = inspector.get_table_names()
         print(f"✅ {len(tables)} tables créées: {', '.join(tables)}")
@@ -125,6 +124,84 @@ def test_relationships():
         return False
 
 
+def test_relationship_access():
+    """Teste l'accès aux relations (détecte les erreurs d'ambiguïté)"""
+    print("\n🔗 Test d'accès aux relations...")
+    
+    try:
+        # Créer une session de test
+        engine = create_engine("sqlite:///:memory:", echo=False)
+        Base.metadata.create_all(engine)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        
+        # Créer des objets de test
+        user = User(
+            username="test_user",
+            email="test@example.com",
+            solana_address="test_solana_address_123"
+        )
+        session.add(user)
+        session.flush()
+        
+        annonce = Annonce(
+            title="Test Annonce",
+            description="Test Description",
+            price=100.0,
+            category="Test",
+            hash_url="test_hash_123",
+            user_id=user.id
+        )
+        session.add(annonce)
+        session.flush()
+        
+        conversation = Conversation(
+            annonce_id=annonce.id,
+            buyer_id=user.id,
+            seller_id=user.id,
+            title="Test Conversation"
+        )
+        session.add(conversation)
+        session.flush()
+        
+        message = Message(
+            conversation_id=conversation.id,
+            sender_id=user.id,
+            content="Test message"
+        )
+        session.add(message)
+        session.flush()
+        
+        # Test d'accès aux relations (ceci peut déclencher l'erreur d'ambiguïté)
+        try:
+            # Accéder aux messages de la conversation
+            messages = conversation.messages
+            print(f"  ✅ Accès conversation.messages: {len(messages)} messages")
+            
+            # Accéder à la conversation du message
+            conv = message.conversation
+            print(f"  ✅ Accès message.conversation: {conv.title}")
+            
+            # Accéder au dernier message
+            conversation.last_message_id = message.id
+            session.flush()
+            last_msg = conversation.last_message
+            print(f"  ✅ Accès conversation.last_message: {last_msg.content}")
+            
+        except Exception as e:
+            print(f"  ❌ Erreur lors de l'accès aux relations: {e}")
+            session.close()
+            return False
+        
+        session.close()
+        print("✅ Accès aux relations testé avec succès")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erreur lors du test d'accès aux relations: {e}")
+        return False
+
+
 def main():
     """Fonction principale de test"""
     print("🚀 Démarrage des tests des modèles SQLAlchemy\n")
@@ -132,7 +209,8 @@ def main():
     tests = [
         test_model_initialization,
         test_database_creation,
-        test_relationships
+        test_relationships,
+        test_relationship_access
     ]
     
     passed = 0
