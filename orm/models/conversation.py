@@ -26,7 +26,7 @@ class Conversation(Base, RecordTimestamps):
     annonce = relationship("Annonce", backref="conversations")
     buyer = relationship("User", foreign_keys=[buyer_id], backref="buyer_conversations")
     seller = relationship("User", foreign_keys=[seller_id], backref="seller_conversations")
-    messages = relationship("Message", foreign_keys="Message.conversation_id", back_populates="conversation", cascade="all, delete-orphan")
+    messages = relationship("Message", back_populates="conversation", cascade="all, delete-orphan", primaryjoin="Conversation.id == Message.conversation_id")
     last_message = relationship("Message", foreign_keys=[last_message_id])
     archived_by_user = relationship("User", foreign_keys=[archived_by])
     
