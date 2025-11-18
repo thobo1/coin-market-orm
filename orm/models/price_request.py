@@ -1,4 +1,5 @@
-from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String, Text, JSON
+from sqlalchemy import (JSON, Column, DateTime, Float, ForeignKey, Integer,
+                        String, Text)
 from sqlalchemy.sql import func
 
 from orm.database import Base
@@ -15,4 +16,5 @@ class PriceRequest(Base, RecordTimestamps):
     last_offer_by = Column(String)
     offer_price = Column(Float)
     signature = Column(String, nullable=True)
-    status = Column(String)  
+    status = Column(String)
+    timestamp = Column(DateTime, default=func.now())  
